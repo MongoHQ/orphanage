@@ -1,0 +1,7 @@
+how will orphanage know that something
+new
+was added to this file?
+
+by having a 1234-abdc-6789.updated file which flags down orphanage to do something. Orphanage then deletes this file.
+
+We can also have a 1234-abdc-6789.done file to flag when something is complete
