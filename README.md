@@ -5,7 +5,7 @@ orphanage
 
 ## purpose
 
-Implement something very close to [`child_process`](http://nodejs.org/api/child_process.html) that live a full and industrius life even after the parent process dies, which can be picked up by new loving parents.
+Implement something very close to [`child_process`](http://nodejs.org/api/child_process.html) which leads an industrius life even after the parent process dies. The child's output and toils can be picked up by new loving parents.
 
 ## use case
 
@@ -17,7 +17,7 @@ If you use orphanage to do the long-running worker process, you can restart node
 
 ### `orphanage.open(path, callback)`
 
-This opens an orphanage on the specified directory (we use the filesystem to maintain state). The `callback` gets two arguments `(err, orphans)`. `orphans` is an `EventEmitter` and has additional methods as specified below. When you can no longer care for the orphans, you should call `orphans.abandon()` so that another orphanage can handle their output.
+This opens an orphanage on the specified directory (we use the filesystem to maintain state). The `callback` gets two arguments `(err, orphans).` `orphans` is an `EventEmitter` and has additional methods as specified below. When you can no longer care for the orphans, you should call `orphans.abandon()` so that another orphanage can handle their output.
 
 ### `orphans.abandon()`
 
