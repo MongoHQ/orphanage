@@ -1,8 +1,13 @@
-var
-  child_process = require('child_process')
+var 
+  orphanage = require('./index'),
+  path = require('path')
 
-var
-  child = child_process.fork('./sleeper')
-
-console.log(child)
-process.exit()
+orphanage.open(path.resolve('./run'), function(err, orphans) {
+  console.log(arguments)
+  orphans.on('error', function(err) {
+    logger.error('error', err)
+  })
+  orphans.spawn('ls', ['-lh', '/usdfsr'], {})
+  console.log('exit')
+  process.exit()
+})
