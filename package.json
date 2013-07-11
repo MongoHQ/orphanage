@@ -1,14 +1,14 @@
 {
   "name": "orphanage",
   "version": "0.0.0",
-  "description": "forks spawns and handles your parentless children",
+  "description": "child process forking that has no parental ties",
   "main": "index.js",
   "scripts": {
     "test": "mocha test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/supershabam/orphanage"
+    "url": "git://github.com/MongoHQ/orphanage"
   },
   "keywords": [
     "fork",
@@ -19,7 +19,7 @@
   "author": "ian@supershabam.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/supershabam/orphanage/issues"
+    "url": "https://github.com/MongoHQ/orphanage/issues"
   },
   "dependencies": {
     "node-uuid": "~1.4.0",

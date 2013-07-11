@@ -5,19 +5,19 @@ orphanage
 
 ## purpose
 
-Implement something very close to [`child_process`](http://nodejs.org/api/child_process.html) which leads an industrius life even after the parent process dies. The child's output and toils can be picked up by new loving parents.
+Implement something very close to [`child_process`](http://nodejs.org/api/child_process.html) that continues to work after the parent goes away, and still be able to reconnect and get the data from the child as if it were your own.
 
 ## use case
 
 You need to restart a node process without interrupting the long-running work that it is currently doing. 
 
-If you use orphanage to do the long-running worker process, you can restart node and the worker process will continue. The newly restarted node process will notice the working/completed orphaned worker from the previous node process and consume its output as if it had spanwed the process itself.
+If you use orphanage to fork long-running worker processes, you can restart node and the worker processes will continue. The newly restarted node process will notice the working/completed orphaned workers from the previous node process and consume their output as if it had spanwed the processes itself.
 
 ## api
 
 ### `orphanage.open(path, [interval = 250], callback)`
 
-This opens an orphanage on the specified directory (we use the filesystem to maintain state). The `callback` gets two arguments `(err, orphans).` `orphans` is an `EventEmitter` and has additional methods as specified below. When you can no longer care for the orphans, you should call `orphans.abandon()` so that another orphanage can handle their output.
+This opens an orphanage on the specified directory (we use the filesystem to maintain state). The `callback` gets two arguments `(err, orphans).` `orphans` is an `EventEmitter` and has additional methods as specified below. When you can no longer care for the orphans, you should call `orphans.abandon().` You shouldn't run two orphanages on the same directory.
 
 The filesystem is polled for output from orphans based on the interval in milliseconds.
 
@@ -27,7 +27,7 @@ This cleans up the orphans object and clears all event listeners. If an error oc
 
 ### `orphans.exec(command, inheritance, [options])`
 
-You're making an orphan whose life purpose is to do an [`child_process.exec`](http://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback) command. The orphan has only this command, and whatever `inheritance` you leave it which will be present in any events resulting from this orphan in the future.
+You're making an orphan whose life purpose is to do an [`child_process.exec`](http://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback) command. The orphan has only this command, and whatever `inheritance` you leave it. The inheritance will be present in any events resulting from this orphan in the future.
 
 Exec method will result in a single `complete` event when the script finishes.
 
@@ -37,7 +37,7 @@ A good inheritance should at least be a name, so that you can identify future ev
 
 ### `orphans.spawn(command, args, inheritance, [options])`
 
-Much like spawn, this mimicks the [`child_process.spawn`](http://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options) command.
+This mimicks the [`child_process.spawn`](http://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options) command in an abandonable way.
 
 Spawn will result in zero to many `stdout` and `stderr` events a single `complete` event.
 
