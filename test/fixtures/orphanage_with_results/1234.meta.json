@@ -1,8 +1,0 @@
-{
-  "command": {
-    "method": "spawn",
-    "args": ["1"]
-  },
-  "started": 123456
-  "inheritance": {}
-}
