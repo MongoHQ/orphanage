@@ -5,7 +5,7 @@ orphanage
 
 ## purpose
 
-Implement something very close to [`child_process`](http://nodejs.org/api/child_process.html) that continues to work after the parent goes away, and still be able to reconnect and get the data from the child as if it were your own.
+Implement something very close to [`child_process`](http://nodejs.org/api/child_process.html) that continues to work after the parent goes away and is still be able to reconnect and get the data from the child as if it were your own.
 
 ## use case
 
