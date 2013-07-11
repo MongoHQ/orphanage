@@ -17,13 +17,15 @@ If you use orphanage to fork long-running worker processes, you can restart node
 
 ### `orphanage.open(path, [interval = 250], callback)`
 
-This opens an orphanage on the specified directory (we use the filesystem to maintain state). The `callback` gets two arguments `(err, orphans).` `orphans` is an `EventEmitter` and has additional methods as specified below. When you can no longer care for the orphans, you should call `orphans.abandon().` You shouldn't run two orphanages on the same directory.
+This opens an orphanage on the specified directory (we use the filesystem to maintain state). The `callback` gets two arguments `(err, orphans).` `orphans` is an `EventEmitter` and has additional methods as specified below. When you can no longer care for the orphans, you should call `orphans.abandon().` 
+
+You shouldn't run two orphanages on the same directory.
 
 The filesystem is polled for output from orphans based on the interval in milliseconds.
 
 ### `orphans.abandon()`
 
-This cleans up the orphans object and clears all event listeners. If an error occurs while doing this operation, and `error` event is emitted before clearing all event listeners.
+This cleans up the orphans object and clears all event listeners. The `close` event is emitted once the object is cleaned up (but before clearing event listeners).
 
 ### `orphans.exec(command, inheritance, [options])`
 
@@ -33,7 +35,9 @@ Exec method will result in a single `complete` event when the script finishes.
 
 #### inheritance
 
-A good inheritance should at least be a name, so that you can identify future events. Remember, your process might not be around in the future, so any details you need to properly react to `complete`, `stdout`, or `stderr` events should be stored with the inheritance. Inheritance must be able to be marshalled into JSON.
+A good inheritance should at least be a name, so that you can identify future events. Remember, your process might not be around in the future, so any details you need to properly react to `complete`, `stdout`, or `stderr` events should be stored with the inheritance. 
+
+**Inheritance must be JSON serializable**
 
 ### `orphans.spawn(command, args, inheritance, [options])`
 
@@ -45,7 +49,7 @@ Spawn will result in zero to many `stdout` and `stderr` events a single `complet
 
 The orphans object will emit these events.
 
-### `complete: (result, inheritance)`
+#### `complete: (result, inheritance)`
 
 Complete is emitted when a spanwed or execed process completes. Result is an object containing the keys `stdout`, and `stderr` which are strings, and `code` which is an integer. Inheritance is whatever you passed to spawn or exec.
 
@@ -63,4 +67,4 @@ Error is emitted when something bad happens. The orphanage is in a bad state and
 
 #### `close`
 
-Close is emitted when the orphanage is done shutting down and has cleaned up resources. Listen for this after calling `abandon.`
+Close is emitted when the orphanage is done shutting down and has cleaned up resources. Listen for this after calling `abandon()`.
