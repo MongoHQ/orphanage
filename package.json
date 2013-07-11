@@ -20,5 +20,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/supershabam/orphanage/issues"
+  },
+  "dependencies": {
+    "node-uuid": "~1.4.0"
   }
 }
