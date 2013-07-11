@@ -15,9 +15,11 @@ If you use orphanage to do the long-running worker process, you can restart node
 
 ## api
 
-### `orphanage.open(path, callback)`
+### `orphanage.open(path, [interval = 250], callback)`
 
 This opens an orphanage on the specified directory (we use the filesystem to maintain state). The `callback` gets two arguments `(err, orphans).` `orphans` is an `EventEmitter` and has additional methods as specified below. When you can no longer care for the orphans, you should call `orphans.abandon()` so that another orphanage can handle their output.
+
+The filesystem is polled for output from orphans based on the interval in milliseconds.
 
 ### `orphans.abandon()`
 
