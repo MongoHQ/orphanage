@@ -40,3 +40,13 @@ A good inheritance should at least be a name, so that you can identify future ev
 Much like spawn, this mimicks the [`child_process.spawn`](http://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options) command.
 
 Spawn will result in zero to many `stdout` and `stderr` events a single `complete` event.
+
+### events
+
+Orphans can emit these events.
+
+* `complete` `({stdout: String, stderr, String, code: Integer}, inheritance)`
+* `stdout` `(stdout - string, inheritance)`
+* `stderr` `(stderr - string, inheritance)`
+* `error` `(error - Error)`
+* `close` `()`
