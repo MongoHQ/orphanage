@@ -41,7 +41,7 @@ Much like spawn, this mimicks the [`child_process.spawn`](http://nodejs.org/api/
 
 Spawn will result in zero to many `stdout` and `stderr` events a single `complete` event.
 
-## events
+### events
 
 The orphans object will emit these events.
 
@@ -49,18 +49,18 @@ The orphans object will emit these events.
 
 Complete is emitted when a spanwed or execed process completes. Result is an object containing the keys `stdout`, and `stderr` which are strings, and `code` which is an integer. Inheritance is whatever you passed to spawn or exec.
 
-### `stdout: (stdout, inheritance)`
+#### `stdout: (stdout, inheritance)`
 
 Stdout is emitted when a spawned task writes to stdout, and the stdout variable is the data that the process wrote. Inheritance is whatever you passed to spawn.
 
-### `stderr: (stderr, inheritance)`
+#### `stderr: (stderr, inheritance)`
 
 Stderr is emitted when a spawned task writes to stderr, and the stderr variable is the data the the process wrote. Inheritance is whatever you passed to spawn.
 
-### `error`
+#### `error`
 
 Error is emitted when something bad happens. The orphanage is in a bad state and you can't rely on it operating normaly. You don't want to see error happen. It usually means permission issues to the filesystem.
 
-### `close`
+#### `close`
 
 Close is emitted when the orphanage is done shutting down and has cleaned up resources. Listen for this after calling `abandon.`
