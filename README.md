@@ -1,11 +1,11 @@
 orphanage
 =========
 
-> We, who have so much, need to reach out to the orphaned processes of this world and show them the care, hope, and love they deserve.
+> We need to reach out to the orphaned processes of this world and show them the care, hope, and exit codes they deserve.
 
 ## purpose
 
-Implement something very close to [`child_process`](http://nodejs.org/api/child_process.html) that continues to work after the parent goes away and is still be able to reconnect and get the data from the child as if it were your own.
+Implement API very close to [`child_process`](http://nodejs.org/api/child_process.html) where (1) the child processes continue to work after the parent process goes away and (2) a new parent process can easily claim and manage orphaned child processes.
 
 ## use case
 
@@ -68,3 +68,26 @@ Error is emitted when something bad happens. The orphanage is in a bad state and
 #### `close`
 
 Close is emitted when the orphanage is done shutting down and has cleaned up resources. Listen for this after calling `abandon()`.
+
+## license
+
+The MIT License (MIT)
+
+Copyright (c) 2013 MongoHQ Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

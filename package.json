@@ -1,6 +1,6 @@
 {
   "name": "orphanage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "child process forking that has no parental ties",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "exec",
     "spawn"
   ],
-  "author": "ian@supershabam.com",
+  "author": "Ian Hansen (http://supershabam.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MongoHQ/orphanage/issues"
