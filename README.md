@@ -69,7 +69,7 @@ Error is emitted when something bad happens. The orphanage is in a bad state and
 
 Close is emitted when the orphanage is done shutting down and has cleaned up resources. Listen for this after calling `abandon()`.
 
-## license
+## LICENSE
 
 The MIT License (MIT)
 
