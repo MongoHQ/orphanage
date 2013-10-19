@@ -1,3 +1,10 @@
+USE WITH CAUTION
+================
+
+The implementation of orphanage is very resource intensive (watching a directory for file changes and watching those files). It's a working hack to have node-spawned sub-processes that are attachable by others, but your CPU will be high just running this system.
+
+We have switched away from using this process. We still spawn sub-processes to handle long-lived work that needs to out-live the parent, but instead of reporting back to the parent with data for the parent to handle, we just give the sub-process everything it needs to run without ever talking back to the parent (our child is all grown up and we trust it to do well in the world).
+
 orphanage
 =========
 
